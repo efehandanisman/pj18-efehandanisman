@@ -1,5 +1,5 @@
 ## Week 3 (Oct 31)
-[Here](files/Inclass-Analysis.html) is my in class activity for the Individual Pension Scheme data with ggplot2.
+[Here](files/In-classAnalysis.html) is my in class activity for the Individual Pension Scheme data with ggplot2.
 
 ## Week 2 (Oct 28)
 
