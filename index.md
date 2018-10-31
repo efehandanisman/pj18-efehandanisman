@@ -1,3 +1,7 @@
+## Week 3 (Oct 31)
+[Here](files/InClassActivity.html) is my in class activity for the Individual Pension Scheme data with ggplot2.
+
+
 ## Week 2 (Oct 28)
 
 [Here](files/BDA503-ODDAssignment-EfehanDanisman.html) is my ODD Assignment for August 2017 and [RDS file](files/odd_car_sales_data_aug_18.rds).
