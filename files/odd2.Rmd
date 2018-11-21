@@ -1,0 +1,68 @@
+---
+title: "BDA503-ODDAssignment2-EfehanDanisman"
+author: "Efehan Danışman"
+date: "22 Kasım 2018"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r start-up}
+## Load tidyverse
+library(tidyverse)
+library(shiny)
+library(readr)
+library(scales)
+library(stringr)
+library(zoo)
+```
+
+## ODD Assignment Part-2
+
+At the second part of the assignment I made a Shiny application to track changes for each brand between 2016 and 2018. After the data cleaning what strikes me for each brand is car sales dropped sharply in 2018 and sales kind of peaked at the end of 2017 (probably due to tax increase at the beginning of the 2018).  
+
+PS: Even though zoo package gives me error, it functions perfectly when you select a brand.
+```{r, shiny analysis}
+#Reading data
+car_data_aggregate <- readRDS("~/car_data_aggregate.rds")
+
+#Merging month and year into another column via zoo package.
+car_data_aggregate$Date <- zoo::as.yearmon(paste(car_data_aggregate$year, car_data_aggregate$month), "%Y %m")
+car_data_aggregate$Date2 <- format(car_data_aggregate$Date,"%Y-%m")
+
+#We do not need certain rows at the data. brand_name can not be total and we do not need disclaimer from ODD at the brand_name column.
+car_data_aggregate <- car_data_aggregate %>% filter(brand_name !="TOPLAM:" & !str_detect(brand_name,"ODD"))
+
+#Uniting Aston Martin's.
+car_data_aggregate$brand_name <- str_replace(car_data_aggregate$brand_name,"ASTON MARTİN","ASTON MARTIN")
+
+
+#Shiny Data.
+selectInput("brand_name",label="Brand",choices=car_data_aggregate$brand_name)
+
+renderPlot({
+  car_data_aggregate <- car_data_aggregate %>% filter(brand_name==input$brand_name)
+
+    ggplot(car_data_aggregate,aes(x=as.yearmon(Date2),y=total_total,fill=brand_name))+
+    geom_col(fill="green")+
+    geom_text(aes(label=total_total),face="bold")+
+    theme_bw()+
+    theme(panel.grid.major=element_blank(),panel.grid.minor=element_blank(),text = element_text(size=20))+
+    xlab("Tarih")+
+    ylab("Toplam Satış")
+ 
+  })
+
+renderUI({
+  plotOutput("unsized", height = 1700, width = 1700)
+})
+
+
+```
+
+
