@@ -1,5 +1,5 @@
 ## Week 4 (Nov 22)
-[Here](files/odd2.html) is part 2 of the ODD Assignment. This time used Shiny to visualize car sales according to brand.
+[Here](odd2.html) is part 2 of the ODD Assignment. This time used Shiny to visualize car sales according to brand.
 
 ## Week 3 (Oct 31)
 [Here](files/In-classAnalysis.html) is my in class activity for the Individual Pension Scheme data with ggplot2.
