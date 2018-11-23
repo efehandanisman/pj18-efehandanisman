@@ -1,5 +1,5 @@
 ## Week 4 (Nov 24)
-[Here](files/BDA503-ODDAssignmentPart2-EfehanDanisman.html) is part 2 of the ODD Assignment. Used dplyr and ggplot to visualize total sales and sales for each brands between 2016 and 2018.
+[Here](files/BDA503-ODDAssignmentPart2.html) is part 2 of the ODD Assignment. Used dplyr and ggplot to visualize total sales and sales for each brands between 2016 and 2018.
 
 ## Week 3 (Oct 31)
 [Here](files/In-classAnalysis.html) is my in class activity for the Individual Pension Scheme data with ggplot2.
