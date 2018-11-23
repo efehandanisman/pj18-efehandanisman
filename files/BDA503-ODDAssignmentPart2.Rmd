@@ -1,0 +1,61 @@
+---
+title: "BDA503-ODDAssignment2-EfehanDanisman"
+author: "Efehan Danýþman"
+date: "22 Kasým 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r start-up}
+## Load tidyverse
+library(tidyverse)
+library(readr)
+library(scales)
+library(readr)
+library(stringr)
+library(zoo)
+```
+
+## ODD Assignment Part-2
+
+At the second part of the assignment I made two plots. One is shows total sales in Turkey and another one shows the total sales of each brand. After the data cleaning what strikes me from this analysis is car sales dropped sharply at the beginning of every year possibly due to tax increases at the beginning of each year.
+
+
+```{r, ODD2}
+#Reading data
+car_data_aggregate <- readRDS("C:\\Users\\Efehan\\Documents\\car_data_aggregate.rds")
+
+#Merging month and year into another column via zoo package.
+car_data_aggregate$Date <- zoo::as.yearmon(paste(car_data_aggregate$year, car_data_aggregate$month), "%Y %m")
+car_data_aggregate$Date2 <- format(car_data_aggregate$Date,"%Y-%m")
+
+#We do not need certain rows at the data. brand_name can not be total and we do not need disclaimer from ODD at the brand_name column.
+car_data_aggregate <- car_data_aggregate %>% filter(brand_name !="TOPLAM:" & !str_detect(brand_name,"ODD"))
+
+#Uniting Aston Martin's.
+car_data_aggregate$brand_name <- str_replace(car_data_aggregate$brand_name,"ASTON MARTÄ°N","ASTON MARTIN")
+
+
+#Total sales in Turkey between 2016 and 2018.
+ggplot(car_data_aggregate,aes(x=as.yearqtr(Date2),y=total_total))+
+geom_col(fill="green")+
+theme_bw()+
+theme(panel.grid.major=element_blank(),panel.grid.minor=element_blank(),text = element_text(size=20))
+ 
+# Now let's see which brand sold at most in Turkey between 2016 and 2018. But first, we need to summarize the data.
+summary <-  car_data_aggregate %>% group_by(brand_name) %>% summarize(total_total=sum(total_total))
+   
+ggplot(summary,aes(x=reorder(brand_name,total_total),y=total_total))+
+coord_flip()+
+geom_col(fill="green")+
+theme_bw()+
+theme(panel.grid.major=element_blank(),panel.grid.minor=element_blank(),text = element_text(size=13), axis.text.y=element_text(size=8))+
+scale_y_continuous(labels=comma)
+```
+
+
