@@ -4,7 +4,7 @@
 [Here](https://github.com/efehandanisman/pj18-efehandanisman/blob/master/files/BDA503-Exam.pdf) is my final exam for this class.
 
 ## Group Project
-[Here](https://mef-bda503.github.io/gpj18-first/fiRst_Final.html) is our group project for this class.
+[Here](https://mef-bda503.github.io/gpj18-first/fiRst_Final.html) is our group project for this class in which we analyzed stops at the power plants electricity production in Turkey. We used text mining and regular expressions in order to classify the cuts according to plant and cut type.
 
 ## Week 4 (Nov 24)
 [Here](files/BDA503-ODDAssignmentPart2.html) is part 2 of the ODD Assignment. I used dplyr and ggplot to visualize total sales and sales for each brands between 2016 and 2018.
